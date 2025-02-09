@@ -3,104 +3,36 @@ import random as rd
 # USERS
     # Récupération de WL et VU
     #Clément
-with open ('Data/Clément/watched.csv','r') as infile :
-    vu_brut_clement = infile.readlines()
-vu_clement = []
-del(vu_brut_clement[0])
-for i in vu_brut_clement :
-    ligne = i.split(',')
-    film = ligne[1]
-    vu_clement.append(film)
+users = ['Clément','Naïa','Déclan','Lucie',]
+present = []
 
-with open ('Data/Clément/watchlist.csv','r') as infile :
-    wl_brut_clement = infile.readlines()
-wl_clement = []
-del(wl_brut_clement[0])
-for i in wl_brut_clement :
-    ligne = i.split(',')
-    film = ligne[1]
-    wl_clement.append(film)
-clement = (vu_clement,wl_clement)
+for i in range (len(users)) :
+    with open ('Data/',users[i],'/watched.csv','r') as infile :
+        vu_brut_user = infile.readlines()
+    vu_user = []
+    del(vu_brut_user[0])
+    for i in vu_brut_user :
+        ligne = i.split(',')
+        film = ligne[1]
+        vu_user.append(film)
 
-        #Naïa
-with open ('Data/Naïa/watched.csv','r') as infile :
-    vu_brut_naia = infile.readlines()
-vu_naia = []
-del(vu_brut_naia[0])
-for i in vu_brut_naia:
-    ligne = i.split(',')
-    film = ligne[1]
-    vu_naia.append(film)
+    with open ('Data/Clément/watchlist.csv','r') as infile :
+        wl_brut_user = infile.readlines()
+    wl_user = []
+    del(wl_brut_user[0])
+    for i in wl_brut_user :
+        ligne = i.split(',')
+        film = ligne[1]
+        wl_user.append(film)
+    globals()[users[i].lower()] = (vu_user,wl_user)
+    present.append(globals()[users[i].lower()])
 
-with open ('Data/Naïa/watchlist.csv','r') as infile :
-    wl_brut_naia = infile.readlines()
-wl_naia = []
-del(wl_brut_naia[0])
-for i in wl_brut_naia :
-    ligne = i.split(',')
-    film = ligne[1]
-    wl_naia.append(film)
-naia = (vu_naia,wl_naia)
-
-        # Déclan
-with open ('Data/Déclan/watched.csv','r') as infile :
-    vu_brut_declan = infile.readlines()
-vu_declan = []
-del(vu_brut_declan[0])
-for i in vu_brut_declan :
-    ligne = i.split(',')
-    film = ligne[1]
-    vu_declan.append(film)
-
-with open ('Data/Déclan/watchlist.csv','r') as infile :
-    wl_brut_declan = infile.readlines()
-wl_declan = []
-del(wl_brut_declan[0])
-for i in wl_brut_declan :
-    ligne = i.split(',')
-    film = ligne[1]
-    wl_declan.append(film)
-declan = (vu_declan,wl_declan)
-
-        #Lucie
-with open ('Data/Lucie/watched.csv','r') as infile :
-    vu_brut_lucie = infile.readlines()
-vu_lucie = []
-del(vu_brut_lucie[0])
-for i in vu_brut_lucie :
-    ligne = i.split(',')
-    film = ligne[1]
-    vu_lucie.append(film)
-
-with open ('Data/Lucie/watchlist.csv','r') as infile :
-    wl_brut_lucie = infile.readlines()
-wl_lucie = []
-del(wl_brut_lucie[0])
-for i in wl_brut_lucie :
-    ligne = i.split(',')
-    film = ligne[1]
-    wl_lucie.append(film)
-lucie = (vu_lucie,wl_lucie)
-
-
-users = [
-    clement,naia,declan,lucie,
-]
-
-# Choix des participants
-print("Qui n'est pas là ce soir ? 0 quand fini.")
-PasLa = ''
-while PasLa != '0' :
-    PasLa = input()
-    users.remove(PasLa)
-print(users)
-
-
+######################################################################################################################################################
 # initialistion 
 wl_commune = set()
 
 # trouve un utilisateur
-for source_wl in users:
+for source_wl in present:
     # prend 1 film de la watchlist de source_wl
     for film_wl in source_wl[1]:
         est_trouve = False
