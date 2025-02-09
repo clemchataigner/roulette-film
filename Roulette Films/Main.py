@@ -3,11 +3,14 @@ import random as rd
 # USERS
     # Récupération de WL et VU
     #Clément
-users = ['Clément','Naïa','Déclan','Lucie',]
-present = []
+users = ['Clément', 'Naïa', 'Déclan', 'Lucie']
 
-for i in range (len(users)) :
-    with open ('Data/',users[i],'/watched.csv','r') as infile :
+for i in range(len(users)):
+    user = users[i]  # Récupération du nom de l'utilisateur
+
+    # Correction du chemin avec f-string
+    file_path = f'Data/{user}/watched.csv'
+    with open (str(file_path),'r') as infile :
         vu_brut_user = infile.readlines()
     vu_user = []
     del(vu_brut_user[0])
@@ -16,7 +19,7 @@ for i in range (len(users)) :
         film = ligne[1]
         vu_user.append(film)
 
-    with open ('Data/Clément/watchlist.csv','r') as infile :
+    with open (f'Data/{user}/watchlist.csv','r') as infile :
         wl_brut_user = infile.readlines()
     wl_user = []
     del(wl_brut_user[0])
@@ -24,15 +27,26 @@ for i in range (len(users)) :
         ligne = i.split(',')
         film = ligne[1]
         wl_user.append(film)
-    globals()[users[i].lower()] = (vu_user,wl_user)
-    present.append(globals()[users[i].lower()])
+    
+    if user == 'Clément' :
+        clement = (vu_user, wl_user)
+        users.append(clement)
+    elif user == 'Naïa' :
+        naia = (vu_user, wl_user)
+        users.append(naia)
+    elif user == 'Déclan' :
+        declan = (vu_user, wl_user)
+        users.append(declan)
+    else :
+        lucie = (vu_user, wl_user)
+        users.append(lucie)
 
 ######################################################################################################################################################
 # initialistion 
 wl_commune = set()
 
 # trouve un utilisateur
-for source_wl in present:
+for source_wl in users:
     # prend 1 film de la watchlist de source_wl
     for film_wl in source_wl[1]:
         est_trouve = False
@@ -56,5 +70,4 @@ for source_wl in present:
             wl_commune.add(film_wl)
 
 choix_final = rd.choice(list(wl_commune))
-
 print(choix_final)
