@@ -1,9 +1,6 @@
 import random as rd
 
-# USERS
-    # Récupération de WL et VU
-    #Clément
-users = ['Clément','Déclan','Lucie']
+users = ['Clément','Déclan','Lucie','Naïa']
 present = []
 for i in range(len(users)):
     user = users[i]  # Récupération du nom de l'utilisateur
