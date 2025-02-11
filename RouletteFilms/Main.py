@@ -3,7 +3,7 @@ import random as rd
 # USERS
     # Récupération de WL et VU
     #Clément
-users = ['Clément','Naïa','Déclan','Lucie']
+users = ['Clément','Déclan','Lucie']
 present = []
 for i in range(len(users)):
     user = users[i]  # Récupération du nom de l'utilisateur
@@ -27,19 +27,9 @@ for i in range(len(users)):
         ligne = i.split(',')
         film = ligne[1]
         wl_user.append(film)
-    
-    if user == 'Clément' :
-        clement = (vu_user, wl_user)
-        present.append(clement)
-    elif user == 'Naïa' :
-        naia = (vu_user, wl_user)
-        present.append(naia)
-    elif user == 'Déclan':
-        declan = (vu_user, wl_user)
-        present.append(declan)
-    else :
-        lucie = (vu_user, wl_user)
-        present.append(lucie)
+        
+    present.append((vu_user, wl_user))
+
 
 ######################################################################################################################################################
 # initialistion 
