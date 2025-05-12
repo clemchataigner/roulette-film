@@ -19,7 +19,6 @@ def importationPresent( La ) :
         del(vu_brut_user[0])
         for i in vu_brut_user :
             ligne = i.split(',')
-            print(ligne[1],"CACACACACACACACA")
             film = ligne[1]
             vu_user.append(film)
 
